@@ -1,18 +1,18 @@
-FROM ubuntu:22.04
+FROM debian:11.9-slim
 
 ENV COMPOSER_ALLOW_SUPERUSER=1
 
 # install some package. git, unzip & zip are for composer
 RUN apt-get update \
-    && apt-get install -qy git gnupg locales nano software-properties-common unzip zip
+    && apt-get install -qy git gnupg nano software-properties-common unzip zip
 
 # install locales FR
-RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen \
-    && echo "fr_FR.UTF-8 UTF-8" >> /etc/locale.gen \
-    && locale-gen
-ENV LANG=fr_FR.UTF-8
-ENV LC_ALL=fr_FR.UTF-8
-ENV TZ=Europe/Paris
+RUN apt-get install -y locales \
+    && rm -rf /var/lib/apt/lists/* \
+	&& localedef -i fr_FR -c -f UTF-8 -A /usr/share/locale/locale.alias fr_FR.UTF-8
+ENV LANG fr_FR.utf8
+ENV LC_ALL fr_FR.utf8
+ENV TZ Europe/Paris
 
 # Install apache
 RUN apt-get install -y apache2 apache2-utils \
