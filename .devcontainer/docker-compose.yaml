@@ -1,6 +1,6 @@
 services:
-    appdev:
-        container_name: "PHP8.1-Java11-Node20.8"
+    PHP8.1-Java11-Node20.8:
+        container_name: "PHP81-Java11-Node20"
         build:
             dockerfile: Dockerfile
         ports:
