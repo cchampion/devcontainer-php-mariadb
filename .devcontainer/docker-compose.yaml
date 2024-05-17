@@ -1,4 +1,3 @@
-version: '3.7'
 services:
     appdev:
         container_name: "comitidev-php"
