@@ -1,6 +1,6 @@
 FROM debian:11.9-slim
 
-ENV COMPOSER_ALLOW_SUPERUSER=1
+ENV COMPOSER_ALLOW_SUPERUSER 1
 
 # install some package. git, unzip & zip are for composer
 RUN apt-get update \
