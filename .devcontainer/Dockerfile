@@ -223,7 +223,7 @@ RUN export \
 		PHP_UNAME='Linux - Docker' \
 	;
 
-RUN files/docker-php-source extract; \
+RUN docker-php-source extract; \
 	cd /usr/src/php; \
 	gnuArch="$(dpkg-architecture --query DEB_BUILD_GNU_TYPE)"; \
 	debMultiarch="$(dpkg-architecture --query DEB_BUILD_MULTIARCH)"; \
