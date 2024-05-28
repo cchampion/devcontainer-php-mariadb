@@ -3,11 +3,11 @@ FROM debian:11.9-slim
 ENV COMPOSER_ALLOW_SUPERUSER 1
 
 # install some package. git, unzip & zip are for composer
-RUN apt-get update \
-    && apt-get install -qy git gnupg nano software-properties-common unzip zip
+RUN apt update \
+    && apt install -qy git gnupg nano software-properties-common unzip zip
 
 # install locales FR
-RUN apt-get install -y locales \
+RUN apt install -y locales \
     && rm -rf /var/lib/apt/lists/* \
 	&& localedef -i fr_FR -c -f UTF-8 -A /usr/share/locale/locale.alias fr_FR.UTF-8
 ENV LANG fr_FR.utf8
@@ -22,15 +22,16 @@ RUN a2enmod rewrite
 RUN a2enmod headers
 
 # Install php 8.1, Composer and Symfony
-RUN add-apt-repository ppa:ondrej/php \
+RUN apt update
+RUN add-apt-repository ppa:ondrej/php
 #     && echo 'deb http://packages.dotdeb.org jessie all' | tee -a /etc/apt/sources.list \
 #     && echo 'deb-src http://packages.dotdeb.org jessie all' | tee -a /etc/apt/sources.list \
 #     && cd /tmp \
 #     && curl https://www.dotdeb.org/dotdeb.gpg > dotdeb.gpg \
 #     && apt-key add dotdeb.gpg \
-    && apt-get update \
-    && DEBIAN_FRONTEND=noninteractive apt-get install -y php8.1 php8.1-readline \
-    && DEBIAN_FRONTEND=noninteractive apt-get install -y \
+RUN apt update
+RUN DEBIAN_FRONTEND=noninteractive apt install -y php8.1 php8.1-readline \
+    && DEBIAN_FRONTEND=noninteractive apt install -y \
         php8.1-cli php8.1-curl php8.1-dev php8.1-gd php8.1-intl \
         php8.1-mbstring php8.1-mysql php8.1-opcache php8.1-xml php8.1-zip \
     && echo "<?php phpinfo(); ?>" > /var/www/html/phpinfo.php \
