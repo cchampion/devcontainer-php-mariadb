@@ -170,8 +170,8 @@ RUN set -eux; \
 	apt update; \
 	apt install -y --no-install-recommends gnupg; \
 	rm -rf /var/lib/apt/lists/*; \
-	\
-	mkdir -p /usr/src; \
+
+RUN mkdir -p /usr/src; \
 	cd /usr/src; \
 	\
 	curl -fsSL -o php.tar.xz "$PHP_URL"; \
@@ -179,8 +179,8 @@ RUN set -eux; \
 	if [ -n "$PHP_SHA256" ]; then \
 		echo "$PHP_SHA256 *php.tar.xz" | sha256sum -c -; \
 	fi; \
-	\
-	if [ -n "$PHP_ASC_URL" ]; then \
+
+RUN if [ -n "$PHP_ASC_URL" ]; then \
 		curl -fsSL -o php.tar.xz.asc "$PHP_ASC_URL"; \
 		export GNUPGHOME="$(mktemp -d)"; \
 		for key in $GPG_KEYS; do \
