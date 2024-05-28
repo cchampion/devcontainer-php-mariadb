@@ -22,27 +22,28 @@ RUN a2enmod rewrite
 RUN a2enmod headers
 
 # Install php 8.1, Composer and Symfony
-RUN apt update
+#RUN apt update
 #RUN add-apt-repository ppa:ondrej/php
 #     && echo 'deb http://packages.dotdeb.org jessie all' | tee -a /etc/apt/sources.list \
 #     && echo 'deb-src http://packages.dotdeb.org jessie all' | tee -a /etc/apt/sources.list \
 #     && cd /tmp \
 #     && curl https://www.dotdeb.org/dotdeb.gpg > dotdeb.gpg \
 #     && apt-key add dotdeb.gpg \
-#RUN apt update
-RUN DEBIAN_FRONTEND=noninteractive apt install -y php8.1 php8.1-readline \
-    && DEBIAN_FRONTEND=noninteractive apt install -y \
+RUN apt update
+RUN DEBIAN_FRONTEND=noninteractive apt install -y php8.1 php8.1-readline
+RUN DEBIAN_FRONTEND=noninteractive apt install -y \
         php8.1-cli php8.1-curl php8.1-dev php8.1-gd php8.1-intl \
-        php8.1-mbstring php8.1-mysql php8.1-opcache php8.1-xml php8.1-zip \
-    && echo "<?php phpinfo(); ?>" > /var/www/html/phpinfo.php \
-    && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
-    && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
-    && curl -sS https://get.symfony.com/cli/installer | bash \
-    && mv /root/.symfony5/bin/symfony /usr/local/bin
+        php8.1-mbstring php8.1-mysql php8.1-opcache php8.1-xml php8.1-zip
+RUN echo "<?php phpinfo(); ?>" > /var/www/html/phpinfo.php
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+RUN apt clean
+RUN rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+RUN curl -sS https://get.symfony.com/cli/installer | bash
+RUN mv /root/.symfony5/bin/symfony /usr/local/bin
 
 # Install OpenJDK 11 JRE
-RUN apt-get update \
-    && apt-get install -y openjdk-11-jre
+RUN apt update \
+    && apt install -y openjdk-11-jre
 
 # Install nvm, Node 20.8.1, yarn
 RUN mkdir /usr/local/nvm
