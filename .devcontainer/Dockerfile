@@ -196,6 +196,7 @@ RUN if [ -n "$PHP_ASC_URL" ]; then \
 	apt purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false
 
 COPY files/docker-php-source /usr/local/bin/
+RUN chmod 777 /usr/local/bin/docker-php-source
 
 RUN set -eux; \
 	\
