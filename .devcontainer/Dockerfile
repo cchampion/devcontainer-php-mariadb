@@ -70,8 +70,8 @@ ENV PHPIZE_DEPS \
 
 # persistent / runtime deps
 RUN set -eux; \
-	apt-get update; \
-	apt-get install -y --no-install-recommends \
+	apt update; \
+	apt install -y --no-install-recommends \
 		$PHPIZE_DEPS \
 		ca-certificates \
 		curl \
@@ -92,8 +92,8 @@ ENV APACHE_CONFDIR /etc/apache2
 ENV APACHE_ENVVARS $APACHE_CONFDIR/envvars
 
 RUN set -eux; \
-	apt-get update; \
-	apt-get install -y --no-install-recommends apache2; \
+	apt update; \
+	apt install -y --no-install-recommends apache2; \
 	rm -rf /var/lib/apt/lists/*; \
 	\
 # generically convert lines like
@@ -167,8 +167,8 @@ ENV PHP_SHA256="95d0b2e9466108fd750dab5c30a09e5c67f5ad2cb3b1ffb3625a038a755ad080
 RUN set -eux; \
 	\
 	savedAptMark="$(apt-mark showmanual)"; \
-	apt-get update; \
-	apt-get install -y --no-install-recommends gnupg; \
+	apt update; \
+	apt install -y --no-install-recommends gnupg; \
 	rm -rf /var/lib/apt/lists/*; \
 	\
 	mkdir -p /usr/src; \
@@ -193,15 +193,15 @@ RUN set -eux; \
 	\
 	apt-mark auto '.*' > /dev/null; \
 	apt-mark manual $savedAptMark > /dev/null; \
-	apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false
+	apt purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false
 
 COPY files/docker-php-source /usr/local/bin/
 
 RUN set -eux; \
 	\
 	savedAptMark="$(apt-mark showmanual)"; \
-	apt-get update; \
-	apt-get install -y --no-install-recommends \
+	apt update; \
+	apt install -y --no-install-recommends \
 		apache2-dev \
 		libargon2-dev \
 		libcurl4-openssl-dev \
@@ -307,7 +307,7 @@ RUN	cp -v php.ini-* "$PHP_INI_DIR/"; \
 		| sort -u \
 		| xargs -r apt-mark manual \
 	; \
-	apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false; \
+	apt purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false; \
 	rm -rf /var/lib/apt/lists/*; \
 	\
 # update pecl channel definitions https://github.com/docker-library/php/issues/443
