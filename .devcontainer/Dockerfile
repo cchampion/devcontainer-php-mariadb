@@ -23,13 +23,13 @@ RUN a2enmod headers
 
 # Install php 8.1, Composer and Symfony
 RUN apt update
-RUN add-apt-repository ppa:ondrej/php
+#RUN add-apt-repository ppa:ondrej/php
 #     && echo 'deb http://packages.dotdeb.org jessie all' | tee -a /etc/apt/sources.list \
 #     && echo 'deb-src http://packages.dotdeb.org jessie all' | tee -a /etc/apt/sources.list \
 #     && cd /tmp \
 #     && curl https://www.dotdeb.org/dotdeb.gpg > dotdeb.gpg \
 #     && apt-key add dotdeb.gpg \
-RUN apt update
+#RUN apt update
 RUN DEBIAN_FRONTEND=noninteractive apt install -y php8.1 php8.1-readline \
     && DEBIAN_FRONTEND=noninteractive apt install -y \
         php8.1-cli php8.1-curl php8.1-dev php8.1-gd php8.1-intl \
