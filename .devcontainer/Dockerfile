@@ -267,9 +267,6 @@ RUN set -eux; \
 # https://github.com/bwoebi/phpdbg-docs/issues/1#issuecomment-163872806 ("phpdbg is primarily a CLI debugger, and is not suitable for debugging an fpm stack.")
 		--disable-phpdbg \
 		\
-# in PHP 7.4+, the pecl/pear installers are officially deprecated (requiring an explicit "--with-pear")
-		--with-pear \
-		\
 # bundled pcre does not support JIT on s390x
 # https://manpages.debian.org/bullseye/libpcre3-dev/pcrejit.3.en.html#AVAILABILITY_OF_JIT_SUPPORT
 		$(test "$gnuArch" = 's390x-linux-gnu' && echo '--without-pcre-jit') \
@@ -278,8 +275,8 @@ RUN set -eux; \
 		--disable-cgi \
 		\
 		--with-apxs2 \
-	; \
-	make -j "$(nproc)"; \
+	;
+RUN	make -j "$(nproc)"; \
 	find -type f -name '*.a' -delete; \
 	make install; \
 	find \
