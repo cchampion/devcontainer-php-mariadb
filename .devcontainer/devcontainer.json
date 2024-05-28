@@ -1,7 +1,7 @@
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the
 // README at: https://github.com/devcontainers/templates/tree/main/src/php-mariadb
 {
-	"name": "PHP8.1 Java11 Node20.8 MySQL5.5.49",
+	"name": "PHP8.1 Java11 Node20.8",
 	"dockerComposeFile": "docker-compose.yaml",
 	"service": "PHP8.1-Java11-Node20.8",
 	"workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
