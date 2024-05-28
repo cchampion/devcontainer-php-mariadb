@@ -3,7 +3,7 @@
 {
 	"name": "PHP8.1 Java11 Node20.8",
 	"dockerComposeFile": "docker-compose.yaml",
-	"service": "PHP8.1-Java11-Node20.8",
+	"service": "php8.1-java11-node20.8",
 	"workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
 
 	// Features to add to the dev container. More info: https://containers.dev/features.
