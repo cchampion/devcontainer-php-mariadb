@@ -15,8 +15,9 @@ ENV LC_ALL fr_FR.utf8
 ENV TZ Europe/Paris
 
 # Install apache
-RUN apt-get install -y apache2
-RUN apt-get install -y apache2-utils
+RUN apt update
+RUN apt install -y apache2
+RUN apt install -y apache2-utils
 RUN a2enmod rewrite
 RUN a2enmod headers
 
