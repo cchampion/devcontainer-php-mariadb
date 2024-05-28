@@ -165,11 +165,11 @@ ENV PHP_URL="https://www.php.net/distributions/php-8.1.13.tar.xz" PHP_ASC_URL="h
 ENV PHP_SHA256="95d0b2e9466108fd750dab5c30a09e5c67f5ad2cb3b1ffb3625a038a755ad080"
 
 RUN set -eux; \
-	\
-	savedAptMark="$(apt-mark showmanual)"; \
-	apt update; \
-	apt install -y --no-install-recommends gnupg; \
-	rm -rf /var/lib/apt/lists/*; \
+
+RUN savedAptMark="$(apt-mark showmanual)";
+RUN apt update;
+RUN apt install -y --no-install-recommends gnupg;
+RUN rm -rf /var/lib/apt/lists/*;
 
 RUN mkdir -p /usr/src; \
 	cd /usr/src; \
