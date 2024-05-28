@@ -160,8 +160,8 @@ ENV PHP_LDFLAGS="-Wl,-O1 -pie"
 
 ENV GPG_KEYS 528995BFEDFBA7191D46839EF9BA0ADA31CBD89E 39B641343D8C104B2B146DC3F9C39DC0B9698544 F1F692238FBC1666E5A5CCD4199F9DFEF6FFBAFD
 
-ENV PHP_VERSION 8.1.28
-ENV PHP_URL="https://www.php.net/distributions/php-8.1.28.tar.xz" PHP_ASC_URL="https://www.php.net/distributions/php-8.1.28.tar.xz.asc"
+ENV PHP_VERSION 8.1.13
+ENV PHP_URL="https://www.php.net/distributions/php-8.1.13.tar.xz" PHP_ASC_URL="https://www.php.net/distributions/php-8.1.13.tar.xz.asc"
 ENV PHP_SHA256="95d0b2e9466108fd750dab5c30a09e5c67f5ad2cb3b1ffb3625a038a755ad080"
 
 RUN set -eux; \
@@ -276,6 +276,7 @@ RUN set -eux; \
 		\
 		--with-apxs2 \
 	;
+
 RUN	make -j "$(nproc)"; \
 	find -type f -name '*.a' -delete; \
 	make install; \
@@ -288,9 +289,9 @@ RUN	make -j "$(nproc)"; \
 		' -- '{}' + \
 	; \
 	make clean; \
-	\
+
 # https://github.com/docker-library/php/issues/692 (copy default example "php.ini" files somewhere easily discoverable)
-	cp -v php.ini-* "$PHP_INI_DIR/"; \
+RUN	cp -v php.ini-* "$PHP_INI_DIR/"; \
 	\
 	cd /; \
 	files/docker-php-source delete; \
@@ -311,7 +312,6 @@ RUN	make -j "$(nproc)"; \
 	\
 # update pecl channel definitions https://github.com/docker-library/php/issues/443
 	pecl update-channels; \
-	rm -rf /tmp/pear ~/.pearrc; \
 	\
 # smoke test
 	php --version
