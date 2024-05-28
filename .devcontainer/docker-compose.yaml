@@ -1,13 +1,9 @@
 services:
-    php8.1-java11-node20.8:
-        container_name: "php8.1-java11-node20.8"
+    php8.1-node20.8:
+        container_name: "php8.1-node20.8"
         build:
             dockerfile: Dockerfile
         ports:
             - "80:80"
             - "8000:8000"
-            - "8887:8887"
-            - "8888:8080"
-            - "8889:8889"
-            - "8890:9090"
         working_dir: /var/www/html

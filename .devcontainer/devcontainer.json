@@ -1,16 +1,16 @@
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the
 // README at: https://github.com/devcontainers/templates/tree/main/src/php-mariadb
 {
-	"name": "PHP8.1 Java11 Node20.8",
+	"name": "PHP8.1 Node20.8",
 	"dockerComposeFile": "docker-compose.yaml",
-	"service": "php8.1-java11-node20.8",
-	"workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+	"service": "php8.1-node20.8",
+	"workspaceFolder": "/var/www/html",
 
 	// Features to add to the dev container. More info: https://containers.dev/features.
 	// "features": {},
 
 	// For use with PHP or Apache (e.g.php -S localhost:8080 or apache2ctl start)
-	forwardPorts: [80,8000,8887,8888,8889,8890]
+	forwardPorts: [80,8000]
 
 	// Use 'postCreateCommand' to run commands after the container is created.
 	// "postCreateCommand": "sudo chmod a+x \"$(pwd)\" && sudo rm -rf /var/www/html && sudo ln -s \"$(pwd)\" /var/www/html"

@@ -41,10 +41,6 @@ RUN rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 RUN curl -sS https://get.symfony.com/cli/installer | bash
 RUN mv /root/.symfony5/bin/symfony /usr/local/bin
 
-# Install OpenJDK 11 JRE
-RUN apt update \
-    && apt install -y openjdk-11-jre
-
 # Install nvm, Node 20.8.1, yarn
 RUN mkdir /usr/local/nvm
 ENV NVM_DIR /usr/local/nvm
@@ -58,11 +54,3 @@ RUN curl https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash 
 
 ENV NODE_PATH $NVM_DIR/v$NODE_VERSION/lib/node_modules
 ENV PATH $NVM_DIR/versions/node/v$NODE_VERSION/bin:$PATH
-
-# Copy files in docker container
-COPY etc/ /etc/
-COPY var/ /var/
-
-#CMD tail -f /dev/null
-CMD ["apache2-foreground"]
-
