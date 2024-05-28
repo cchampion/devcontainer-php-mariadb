@@ -166,7 +166,7 @@ ENV PHP_SHA256="95d0b2e9466108fd750dab5c30a09e5c67f5ad2cb3b1ffb3625a038a755ad080
 
 RUN set -eux; \
 
-RUN savedAptMark="$(apt mark showmanual)";
+#RUN savedAptMark="$(apt-mark showmanual)";
 RUN apt update;
 RUN apt install -y --no-install-recommends gnupg;
 RUN rm -rf /var/lib/apt/lists/*;
