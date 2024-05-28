@@ -164,9 +164,9 @@ ENV PHP_VERSION 8.1.13
 ENV PHP_URL="https://www.php.net/distributions/php-8.1.13.tar.xz" PHP_ASC_URL="https://www.php.net/distributions/php-8.1.13.tar.xz.asc"
 ENV PHP_SHA256="95d0b2e9466108fd750dab5c30a09e5c67f5ad2cb3b1ffb3625a038a755ad080"
 
-RUN set -eux; \
+RUN set -eux;
 
-#RUN savedAptMark="$(apt-mark showmanual)";
+RUN savedAptMark="$(apt-mark showmanual)";
 RUN apt update;
 RUN apt install -y --no-install-recommends gnupg;
 RUN rm -rf /var/lib/apt/lists/*;
