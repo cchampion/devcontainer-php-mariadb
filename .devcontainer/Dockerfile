@@ -15,9 +15,10 @@ ENV LC_ALL fr_FR.utf8
 ENV TZ Europe/Paris
 
 # Install apache
-RUN apt-get install -y apache2 apache2-utils \
-    && a2enmod rewrite \
-    && a2enmod headers
+RUN apt-get install -y apache2
+RUN apt-get install -y apache2-utils
+RUN a2enmod rewrite
+RUN a2enmod headers
 
 # Install php 8.1, Composer and Symfony
 RUN add-apt-repository ppa:ondrej/php \
