@@ -1,5 +1,5 @@
 services:
-    PHP8.1-Java11-Node20.8:
+    php8.1-java11-node20.8:
         container_name: "php8.1-java11-node20.8"
         build:
             dockerfile: Dockerfile
