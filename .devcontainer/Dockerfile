@@ -178,7 +178,7 @@ RUN mkdir -p /usr/src; \
 	\
 	if [ -n "$PHP_SHA256" ]; then \
 		echo "$PHP_SHA256 *php.tar.xz" | sha256sum -c -; \
-	fi; \
+	fi;
 
 RUN if [ -n "$PHP_ASC_URL" ]; then \
 		curl -fsSL -o php.tar.xz.asc "$PHP_ASC_URL"; \
