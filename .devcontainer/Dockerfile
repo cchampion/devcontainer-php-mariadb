@@ -1,4 +1,4 @@
-FROM php:8.1.13-apache
+FROM php:8.1.13-apache-buster
 
 ENV COMPOSER_ALLOW_SUPERUSER 1
 
@@ -22,18 +22,18 @@ ENV TZ Europe/Paris
 #RUN a2enmod headers
 #
 ## Install php 8.1, Composer and Symfony
-RUN apt update
-RUN add-apt-repository ppa:ondrej/php
+#RUN apt update
+#RUN add-apt-repository ppa:ondrej/php
 ##     && echo 'deb http://packages.dotdeb.org jessie all' | tee -a /etc/apt/sources.list \
 ##     && echo 'deb-src http://packages.dotdeb.org jessie all' | tee -a /etc/apt/sources.list \
 ##     && cd /tmp \
 ##     && curl https://www.dotdeb.org/dotdeb.gpg > dotdeb.gpg \
 ##     && apt-key add dotdeb.gpg \
-RUN apt update
-#RUN DEBIAN_FRONTEND=noninteractive apt install -y php8.1 php8.1-readline
-RUN DEBIAN_FRONTEND=noninteractive apt install -y \
-        php8.1-cli php8.1-curl php8.1-dev php8.1-gd php8.1-intl \
-        php8.1-mbstring php8.1-mysql php8.1-opcache php8.1-xml php8.1-zip
+#RUN apt update
+##RUN DEBIAN_FRONTEND=noninteractive apt install -y php8.1 php8.1-readline
+#RUN DEBIAN_FRONTEND=noninteractive apt install -y \
+#        php8.1-cli php8.1-curl php8.1-dev php8.1-gd php8.1-intl \
+#        php8.1-mbstring php8.1-mysql php8.1-opcache php8.1-xml php8.1-zip
 RUN echo "<?php phpinfo(); ?>" > /var/www/html/phpinfo.php
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 RUN apt clean
